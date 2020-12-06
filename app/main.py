@@ -2,7 +2,7 @@
 # # Copyright (c) 2004-2020 novareto GmbH
 # # lwalther@novareto.de
 
-from .models import AUMSingle, AUMEnvelope, AUMResponse
+from .models import Registrierung, AUMSingle, AUMEnvelope, AUMResponse
 from .services import SiguvServices
 
 from fastapi import Security, Depends, FastAPI, HTTPException
@@ -13,7 +13,9 @@ from fastapi.openapi.utils import get_openapi
 from starlette.status import HTTP_403_FORBIDDEN
 from starlette.responses import RedirectResponse, JSONResponse
 
-API_KEY = "1234567asdfgh"
+from .security import generic
+
+API_KEY = generic
 API_KEY_NAME = "access_token"
 COOKIE_DOMAIN = "localtest.me"
 
@@ -38,9 +40,9 @@ app = FastAPI(
     description="OpenApi für SIGUV-Online-Dienste",
     version="0.9btn (better than nothing)",
     openapi_tags = tags_metadata,
-    docs_url=None,
-    redoc_url=None,
-    openapi_url=None
+    #docs_url=None,
+    #redoc_url=None,
+    #openapi_url=None
 )
 
 services = SiguvServices()
@@ -71,6 +73,16 @@ def read_root():
 async def get_open_api_endpoint(api_key: APIKey = Depends(get_api_key)):
     response = "How cool is this?"
     return response
+
+@app.post("/{api_version}/{gen_key}/register", tags=["Standard"])
+def send_register_data(api_version:str, gen_key:str, data:Registrierung):
+    """
+    # Übermittlung der Regsitrierungsdaten, es wird ein API-Key generiert und zurückgeliefert.
+    """
+    if api_version == '0.9btn' and gen_key == generic:
+        return services.register_application(data)
+    else:
+        raise HTTPException(status_code=404, detail="api_version couldn't be found")
 
 @app.post("/{api_version}/single_aum", response_model=AUMResponse, tags=["AUM"])
 def send_single_aum(api_version:str, data:AUMSingle, api_key: APIKey = Depends(get_api_key)):
