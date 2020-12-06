@@ -16,6 +16,15 @@ Installation
     ~/nva.aum$ pip install -r requirements.txt
     ~/nva.aum$ pip install -r dev-requirements.txt
 
+Nach Abschluss der Installation muss im Verzeichnis "app" eine Datei security.py mit dem folgenden Inhalt
+angelegt werden:
+
+    1 credentials = {
+    2     'user':"username",
+    3     'password':"password"}
+    4
+    5 generic = "KeyFuerDenServiceZurGenerierungDesApiKeys"
+
 ### Starten und Stoppen des API-Servers im Entwicklungsmodus
 
     ~/nva.aum$ uvicorn app.main:app --reload
