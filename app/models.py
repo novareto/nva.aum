@@ -2,7 +2,7 @@
 # # Copyright (c) 2004-2020 novareto GmbH
 # # lwalther@novareto.de
 
-from typing import Optional, List, Dict, Text, Union, Literal
+from typing import Optional, List, Dict, Text, Union
 import datetime
 from pydantic import BaseModel, EmailStr, Field
 from typing_extensions import Literal
