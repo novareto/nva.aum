@@ -4,8 +4,18 @@
 
 from typing import Optional, List, Dict, Text, Union, Literal
 import datetime
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, EmailStr, Field
+from typing_extensions import Literal
 
+class Registrierung(BaseModel):
+    """
+    # Registrierung einer Applikation für die SIGUV-API
+    """
+    vorname : str = Field(title=u"Vorname des Verantwortlichen für die Applikation")
+    name : str = Field(title=u"Name des Verantwortlichen für die Applikation")
+    password : str = Field(title=u"Password für die Generierung des Api-Keys")
+    email : EmailStr
+    application : str = Field(title=u"Name der Applikation")
 
 class NutzdatenKopfsegment(BaseModel):
     """

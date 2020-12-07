@@ -1,7 +1,10 @@
 fastapi
+pydantic[email]
 uvicorn[standard]
 sqlalchemy
 psycopg2-binary
 reportlab
 apply
 requests
+pymongo
+typing-extensions
