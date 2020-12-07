@@ -24,6 +24,8 @@ angelegt werden:
     3     'password':"password"}
     4
     5 generic = "KeyFuerDenServiceZurGenerierungDesApiKeys"
+    6
+    7 domain = "uv-kooperation.de"
 
 ### Starten und Stoppen des API-Servers im Entwicklungsmodus
 
