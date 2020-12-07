@@ -7,3 +7,4 @@ reportlab
 apply
 requests
 pymongo
+typing-extensions

@@ -5,6 +5,7 @@
 from typing import Optional, List, Dict, Text, Union, Literal
 import datetime
 from pydantic import BaseModel, EmailStr, Field
+from typing_extensions import Literal
 
 class Registrierung(BaseModel):
     """
