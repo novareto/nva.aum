@@ -28,7 +28,7 @@ client = MongoClient('mongodb://%s:%s@127.0.0.1' % (username, password))
 tags_metadata = [
     {
          "name": "Standard",
-         "description": "Allgemeine Standard-Schnittstellen der SIGUV OpenAPI"
+         "description": "Allgemeine Standard-Schnittstellen der OpenAPI der UV-Kooperation"
     },
     {
         "name": "AUM",
@@ -37,8 +37,8 @@ tags_metadata = [
 ]
 
 app = FastAPI(
-    title="SIGUV OpenAPI",
-    description="OpenApi für SIGUV-Online-Dienste",
+    title="OpenAPI der UV-Kooperation",
+    description="OpenApi für Online-Dienste der UV-Kooperation",
     version="0.9btn (better than nothing)",
     openapi_tags = tags_metadata,
 )
@@ -68,7 +68,7 @@ async def get_api_key(
 @app.get("/", tags=["Standard"])
 def read_root():
     """Willkommmen"""
-    return{"message":"Herzlich Willkommen im SIGUV-Portal für die Veröffentlichung von OpenAPI-Schnittstellen"}
+    return{"message":"Herzlich Willkommen im Portal für die Veröffentlichung von OpenAPI-Schnittstellen der UV-Kooperation"}
 
 
 @app.post("/register/{gen_key}", tags=["Standard"])
